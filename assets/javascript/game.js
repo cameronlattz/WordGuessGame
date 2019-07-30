@@ -27,18 +27,20 @@ const game = function() {
 
     // game functions
     const checkLetter = function(char) {
-        if (letters.indexOf(char) !== -1) {
-            displayMessage("You've already guessed this letter.");
-        } else {
-            if (animal.includes(char)) {
-                messageDiv.innerHTML = "&nbsp;";
-                rightSound.play();
+        if (/[a-zA-Z]/.test(char)) {
+            if (letters.indexOf(char) !== -1) {
+                displayMessage("You've already guessed this letter.");
             } else {
-                displayMessage("Sorry, the word doesn't contain the letter " + char + "!");
-                wrongSound.play();
-                updateGuesses();
+                if (animal.includes(char)) {
+                    messageDiv.innerHTML = "&nbsp;";
+                    rightSound.play();
+                } else {
+                    displayMessage("Sorry, the word doesn't contain the letter " + char + "!");
+                    wrongSound.play();
+                    updateGuesses();
+                }
+                updateLetters(char);
             }
-            updateLetters(char);
         }
     }
     const displayMessage = function(message) {
@@ -108,7 +110,7 @@ const game = function() {
         }, 3000);
     }
     const updateWord = function() {
-        wordDiv.innerHTML = underscores.replace(/ /g, " &nbsp; ").replace(/_/g, "_ ");
+        wordDiv.innerHTML = underscores.replace(/ /g, " ").split("").join(" ");
     }
 
     // listeners
@@ -116,7 +118,7 @@ const game = function() {
         if (!paused) {
             evt = evt || window.event;
             var charCode = evt.keyCode || evt.which;
-            var char = String.fromCharCode(charCode);
+            var char = String.fromCharCode(charCode).toLowerCase();
             checkLetter(char);
         }
     };

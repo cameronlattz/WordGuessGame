@@ -30,4 +30,5 @@ h1 {
 }
 #word {
     margin-bottom: 3px;
+    white-space: pre;
 }
