@@ -9,13 +9,20 @@
 </head>
 <body>
     <div class="content">
-        <div>Wins: <span id="wins">0</span></div>
-        <div>Losses: <span id="losses">0</span></div>
-        <div>Guesses remaining: <span id="guesses">6</span></div>
-        <div>Letters guessed: <span id="letters"></span></div>
-        <div id="word"></div>
-        <div><img id="post" src="assets/images/post-0.png"></div>
-        <div id="message"></div>
+        <div class="board-wrapper">
+            <div class="stats">
+                <h1>Animal Hangman</h1>
+                <div>Wins: <span id="wins">0</span></div>
+                <div>Losses: <span id="losses">0</span></div>
+                <div>Guesses remaining: <span id="guesses">6</span></div>
+                <div>Letters guessed: <span id="letters"></span></div>
+            </div>
+            <div class="display">
+                <div id="word"></div>
+                <div><img id="post" src="assets/images/post-0.png"></div>
+                <div id="message">&nbsp;</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

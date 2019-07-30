@@ -30,7 +30,7 @@ const game = function() {
             displayMessage("You've already guessed this letter.");
         } else {
             if (animal.includes(char)) {
-                messageDiv.innerHTML = "";
+                messageDiv.innerHTML = "&nbsp;";
             } else {
                 displayMessage("Sorry, the word doesn't contain the letter " + char + "!");
                 updateGuesses();
@@ -42,7 +42,7 @@ const game = function() {
         messageDiv.innerHTML = message;
         setTimeout(function() {
             if (!paused) {
-                messageDiv.innerHTML = "";
+                messageDiv.innerHTML = "&nbsp;";
             }
         }, 3000);
     }
@@ -59,7 +59,7 @@ const game = function() {
         guessesDiv.innerHTML = guesses;
         lettersDiv.innerHTML = letters.join(", ");
         lossesDiv.innerHTML = losses;
-        messageDiv.innerHTML = "";
+        messageDiv.innerHTML = "&nbsp;";
         paused = false;
         updatePost();
         getNewWord();
@@ -68,7 +68,7 @@ const game = function() {
         guessesDiv.innerHTML = --guesses;
         updatePost();
         if (guesses === 0) {
-            messageDiv.innerHTML = "Sorry, you lost!";
+            messageDiv.innerHTML = "Sorry, you lost! The word was: " + animal;
             paused = true;
             lossesDiv.innerHTML = ++losses;
             setTimeout(function() {
@@ -103,7 +103,7 @@ const game = function() {
         }, 3000);
     }
     const updateWord = function() {
-        wordDiv.innerHTML = animal + "<br>" + underscores.replace(/ /g, " &nbsp; ").replace(/_/g, "_ ");
+        wordDiv.innerHTML = underscores.replace(/ /g, " &nbsp; ").replace(/_/g, "_ ");
     }
 
     // listeners
