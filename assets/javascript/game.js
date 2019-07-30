@@ -3,6 +3,7 @@ const game = function() {
     let animal = "", underscores = "", paused = false;
     let wordDiv, winsDiv, guessesDiv, lettersDiv, messageDiv, postImg;
     let wins = 0, guesses, letters, losses = 0;
+    let rightSound, wrongSound, winSound, loseSound;
 
     // helper functions
     const getRandomInt = function(min, max) {
@@ -31,8 +32,10 @@ const game = function() {
         } else {
             if (animal.includes(char)) {
                 messageDiv.innerHTML = "&nbsp;";
+                rightSound.play();
             } else {
                 displayMessage("Sorry, the word doesn't contain the letter " + char + "!");
+                wrongSound.play();
                 updateGuesses();
             }
             updateLetters(char);
@@ -69,6 +72,7 @@ const game = function() {
         updatePost();
         if (guesses === 0) {
             messageDiv.innerHTML = "Sorry, you lost! The word was: " + animal;
+            loseSound.play();
             paused = true;
             lossesDiv.innerHTML = ++losses;
             setTimeout(function() {
@@ -98,6 +102,7 @@ const game = function() {
         paused = true;
         winsDiv.innerHTML = ++wins;
         messageDiv.innerHTML = "You won!";
+        winSound.play();
         setTimeout(function() {
             setupGame();
         }, 3000);
@@ -123,6 +128,10 @@ const game = function() {
         messageDiv = document.getElementById("message");
         postImg = document.getElementById("post");
         lossesDiv = document.getElementById("losses");
+        rightSound = new Audio("assets/sounds/jeopardyrightanswer.mp3");
+        wrongSound = new Audio("assets/sounds/trumpwrong.mp3");
+        winSound = new Audio("assets/sounds/win31.mp3");
+        loseSound = new Audio("assets/sounds/the-price-is-right-losing-horn.mp3");
         setupGame();
     }, false);
 }();
